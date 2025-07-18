@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Tea Experience - Edylicious</title>
+    <meta name="description" content="Book your royal tea experience at Edylicious Tea Room. Private parties, bridal showers, and special events in DeSoto, TX.">
+    
+    <!-- Existing CSS -->
+    <link rel="stylesheet" href="../css/subtle-improvements.css">
+    <link rel="stylesheet" href="../css/optimized.css">
+    
+    <style>
+        /* Booking Page Specific Styles - Using Original Burgundy Theme */
+        :root {
+            --burgundy: rgb(122, 41, 60);
+            --burgundy-dark: rgb(92, 31, 45);
+            --burgundy-light: rgba(122, 41, 60, 0.1);
+            --gold: #D4AF37;
+            --cream: #FFF9F0;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+        }
+
+        body {
+            background-color: var(--cream);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .booking-header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .booking-header h1 {
+            color: var(--burgundy);
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .booking-header p {
+            color: var(--gray-600);
+            margin: 0.5rem 0 0;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .progress-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background-color: var(--gray-200);
+            z-index: -1;
+        }
+
+        .progress-step.completed:not(:last-child)::after {
+            background-color: var(--burgundy);
+        }
+
+        .progress-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--gray-200);
+            color: var(--gray-600);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-step.active .progress-circle,
+        .progress-step.completed .progress-circle {
+            background-color: var(--burgundy);
+            color: white;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-labels span {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+        }
+
+        /* Main Container */
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            padding: 0 1rem;
+        }
+
+        .booking-card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        /* Form Styles */
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-section h2 {
+            color: var(--gray-800);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--gray-700);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: border-color 0.15s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--burgundy);
+            box-shadow: 0 0 0 3px var(--burgundy-light);
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Package Cards */
+        .package-card {
+            border: 2px solid var(--gray-200);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .package-card:hover {
+            border-color: var(--burgundy);
+            background-color: var(--cream);
+        }
+
+        .package-card.selected {
+            border-color: var(--burgundy);
+            background-color: var(--burgundy-light);
+        }
+
+        .package-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        .package-info h3 {
+            color: var(--gray-800);
+            font-size: 1.125rem;
+            margin: 0 0 0.5rem;
+        }
+
+        .package-price {
+            text-align: right;
+        }
+
+        .package-price .amount {
+            color: var(--burgundy);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Checkboxes and Radio Buttons */
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .checkbox-label,
+        .radio-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: var(--gray-50);
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .checkbox-label:hover,
+        .radio-label:hover {
+            background-color: var(--gray-100);
+        }
+
+        .checkbox-label input,
+        .radio-label input {
+            margin-right: 0.75rem;
+            accent-color: var(--burgundy);
+        }
+
+        /* Guest Counter */
+        .guest-counter {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .counter-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--burgundy-light);
+            color: var(--burgundy);
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .counter-btn:hover {
+            background-color: var(--burgundy);
+            color: white;
+        }
+
+        .guest-count {
+            font-size: 1.5rem;
+            font-weight: 600;
+            min-width: 3rem;
+            text-align: center;
+        }
+
+        /* Add-on Cards */
+        .addon-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: var(--gray-50);
+            border-radius: 0.375rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .addon-card:hover {
+            background-color: var(--gray-100);
+        }
+
+        .addon-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .addon-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .addon-price {
+            color: var(--burgundy);
+            font-weight: 600;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--burgundy);
+            border: 1px solid var(--burgundy);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--burgundy-light);
+        }
+
+        .btn-primary {
+            background-color: var(--burgundy);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--burgundy-dark);
+        }
+
+        .btn:disabled {
+            background-color: var(--gray-300);
+            color: var(--gray-500);
+            cursor: not-allowed;
+        }
+
+        /* Success Page */
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: white;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+        }
+
+        .alert-warning {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .alert-info {
+            background-color: var(--burgundy-light);
+            color: var(--burgundy-dark);
+        }
+
+        .alert-success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 640px) {
+            .booking-card {
+                padding: 1.5rem;
+            }
+            
+            .progress-labels {
+                display: none;
+            }
+            
+            .package-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .package-price {
+                text-align: left;
+            }
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="booking-header">
+        <h1>Edylicious Tea Room</h1>
+        <p>Book Your Royal Tea Experience</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container" id="progressContainer">
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <div class="progress-circle">1</div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="progress-circle">2</div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="progress-circle">3</div>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="progress-circle">4</div>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="progress-circle">5</div>
+            </div>
+            <div class="progress-step" data-step="6">
+                <div class="progress-circle">6</div>
+            </div>
+            <div class="progress-step" data-step="7">
+                <div class="progress-circle">7</div>
+            </div>
+            <div class="progress-step" data-step="8">
+                <div class="progress-circle">8</div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span>Experience</span>
+            <span>Details</span>
+            <span>Guests</span>
+            <span>Special</span>
+            <span>Enhance</span>
+            <span>Contact</span>
+            <span>Review</span>
+            <span>Confirm</span>
+        </div>
+    </div>
+
+    <!-- Main Booking Container -->
+    <div class="booking-container">
+        <div class="booking-card">
+            <form id="bookingForm">
+                <!-- Step 1: Choose Package -->
+                <div class="form-section active" data-step="1">
+                    <h2>Choose Your Tea Experience</h2>
+                    <div id="packageOptions">
+                        <div class="package-card" data-package="royal">
+                            <div class="package-header">
+                                <div class="package-info">
+                                    <h3>Royal Tea Experience</h3>
+                                    <p>Our signature afternoon tea service with 3 sandwiches, 3 desserts, scone, and unlimited tea</p>
+                                    <p style="font-size: 0.875rem; color: #6b7280;">Duration: 2 hours</p>
+                                </div>
+                                <div class="package-price">
+                                    <div class="amount">$43.14</div>
+                                    <div style="font-size: 0.875rem; color: #6b7280;">per guest</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="package-card" data-package="enhanced">
+                            <div class="package-header">
+                                <div class="package-info">
+                                    <h3>Enhanced Celebration</h3>
+                                    <p>Includes champagne service, professional photos, and take-home gifts</p>
+                                    <p style="font-size: 0.875rem; color: #6b7280;">Duration: 2.5 hours</p>
+                                </div>
+                                <div class="package-price">
+                                    <div class="amount">$58</div>
+                                    <div style="font-size: 0.875rem; color: #6b7280;">per guest</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="package-card" data-package="luxury">
+                            <div class="package-header">
+                                <div class="package-info">
+                                    <h3>Luxury Private Experience</h3>
+                                    <p>Private room exclusive, concierge service, and extended menu</p>
+                                    <p style="font-size: 0.875rem; color: #6b7280;">Duration: 3 hours</p>
+                                </div>
+                                <div class="package-price">
+                                    <div class="amount">$75</div>
+                                    <div style="font-size: 0.875rem; color: #6b7280;">per guest</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="package-card" data-package="custom">
+                            <div class="package-header">
+                                <div class="package-info">
+                                    <h3>Custom VIP Experience</h3>
+                                    <p>Completely customized to your vision</p>
+                                    <p style="font-size: 0.875rem; color: #6b7280;">Duration: Flexible</p>
+                                </div>
+                                <div class="package-price">
+                                    <div class="amount">Custom</div>
+                                    <div style="font-size: 0.875rem; color: #6b7280;">Quote</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Event Details -->
+                <div class="form-section" data-step="2">
+                    <h2>Event Information</h2>
+                    <div class="form-group">
+                        <label for="eventType">What type of celebration?</label>
+                        <select class="form-control" id="eventType" name="eventType">
+                            <option value="">Select event type</option>
+                            <option value="Birthday Tea Party">Birthday Tea Party</option>
+                            <option value="Sweet 16/17 Celebration">Sweet 16/17 Celebration</option>
+                            <option value="Bridal Shower Tea Party">Bridal Shower Tea Party</option>
+                            <option value="Church Ladies Event">Church Ladies Event</option>
+                            <option value="Mother's Day Special">Mother's Day Special</option>
+                            <option value="Corporate/Business Event">Corporate/Business Event</option>
+                            <option value="Anniversary Celebration">Anniversary Celebration</option>
+                            <option value="Graduation Party">Graduation Party</option>
+                            <option value="Just a lovely afternoon tea">Just a lovely afternoon tea</option>
+                        </select>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="preferredDate">Preferred Date</label>
+                            <input type="date" class="form-control" id="preferredDate" name="preferredDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredTime">Preferred Time</label>
+                            <select class="form-control" id="preferredTime" name="preferredTime">
+                                <option value="">Select time</option>
+                                <option value="11:00am">11:00am</option>
+                                <option value="11:30am">11:30am</option>
+                                <option value="1:00pm">1:00pm</option>
+                                <option value="2:00pm">2:00pm</option>
+                                <option value="2:30pm">2:30pm</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-label">
+                        <input type="checkbox" id="flexibleDates" name="flexibleDates">
+                        <label for="flexibleDates">I'm flexible with dates/times</label>
+                    </div>
+                    
+                    <div id="backupDates" style="display: none; margin-top: 1rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="backupDate">Backup Date</label>
+                                <input type="date" class="form-control" id="backupDate" name="backupDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="backupTime">Backup Time</label>
+                                <select class="form-control" id="backupTime" name="backupTime">
+                                    <option value="">Select time</option>
+                                    <option value="11:00am">11:00am</option>
+                                    <option value="11:30am">11:30am</option>
+                                    <option value="1:00pm">1:00pm</option>
+                                    <option value="2:00pm">2:00pm</option>
+                                    <option value="2:30pm">2:30pm</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Guest Information -->
+                <div class="form-section" data-step="3">
+                    <h2>Guest Information</h2>
+                    <div class="form-group">
+                        <label>Number of Guests</label>
+                        <div class="guest-counter">
+                            <button type="button" class="counter-btn" id="decreaseGuests">-</button>
+                            <span class="guest-count" id="guestCount">2</span>
+                            <button type="button" class="counter-btn" id="increaseGuests">+</button>
+                        </div>
+                        <div id="guestWarnings" style="margin-top: 0.5rem;"></div>
+                    </div>
+                    
+                    <div class="checkbox-label">
+                        <input type="checkbox" id="countMayChange" name="countMayChange">
+                        <label for="countMayChange">Guest count may change</label>
+                    </div>
+                    
+                    <div id="guestRange" style="display: none; margin-top: 1rem;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="minGuests">Minimum Expected</label>
+                                <input type="number" class="form-control" id="minGuests" name="minGuests" min="2" value="2">
+                            </div>
+                            <div class="form-group">
+                                <label for="maxGuests">Maximum Expected</label>
+                                <input type="number" class="form-control" id="maxGuests" name="maxGuests" min="2" max="30" value="2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Special Requirements -->
+                <div class="form-section" data-step="4">
+                    <h2>Special Requirements</h2>
+                    <div class="form-group">
+                        <label for="dietaryRestrictions">Dietary Restrictions or Allergies</label>
+                        <textarea class="form-control" id="dietaryRestrictions" name="dietaryRestrictions" 
+                                  placeholder="Please list any dietary restrictions, allergies, or preferences..."></textarea>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-label">
+                            <input type="checkbox" id="photography" name="photography">
+                            <label for="photography">📷 We'll be taking photos/filming during the event</label>
+                        </div>
+                        
+                        <div class="checkbox-label">
+                            <input type="checkbox" id="privateRoom" name="privateRoom">
+                            <label for="privateRoom">👥 Private room requested (25-30 guest capacity)</label>
+                        </div>
+                        
+                        <div class="checkbox-label">
+                            <input type="checkbox" id="extendedTime" name="extendedTime">
+                            <label for="extendedTime">🕐 Need extra time beyond 2 hours (+$100/hour)</label>
+                        </div>
+                        
+                        <div class="checkbox-label">
+                            <input type="checkbox" id="accessibilityNeeds" name="accessibilityNeeds">
+                            <label for="accessibilityNeeds">♿ Accessibility accommodations needed</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specialRequests">Additional Requests or Notes</label>
+                        <textarea class="form-control" id="specialRequests" name="specialRequests" 
+                                  placeholder="Any other special requests or information we should know..."></textarea>
+                    </div>
+                </div>
+
+                <!-- Step 5: Add-ons -->
+                <div class="form-section" data-step="5">
+                    <h2>Enhance Your Experience</h2>
+                    <p style="color: #6b7280; margin-bottom: 1.5rem;">Make your celebration even more special with these add-ons:</p>
+                    
+                    <div class="addon-card">
+                        <div class="addon-info">
+                            <input type="checkbox" id="addOnChampagne" name="addOnChampagne">
+                            <span class="addon-icon">✨</span>
+                            <div>
+                                <strong>Champagne Service</strong>
+                                <div style="font-size: 0.75rem; color: #6b7280;">Premium sparkling beverages for your celebration</div>
+                            </div>
+                        </div>
+                        <span class="addon-price">+$15/guest</span>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-info">
+                            <input type="checkbox" id="addOnPhotography" name="addOnPhotography">
+                            <span class="addon-icon">📸</span>
+                            <div>
+                                <strong>Professional Photography</strong>
+                                <div style="font-size: 0.75rem; color: #6b7280;">Capture every moment with our photographer</div>
+                            </div>
+                        </div>
+                        <span class="addon-price">+$75</span>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-info">
+                            <input type="checkbox" id="addOnTeaSelection" name="addOnTeaSelection">
+                            <span class="addon-icon">🎁</span>
+                            <div>
+                                <strong>Take-Home Tea Selection</strong>
+                                <div style="font-size: 0.75rem; color: #6b7280;">Premium tea blends for each guest</div>
+                            </div>
+                        </div>
+                        <span class="addon-price">+$12/guest</span>
+                    </div>
+                    
+                    <div class="addon-card">
+                        <div class="addon-info">
+                            <input type="checkbox" id="addOnExtendedTime" name="addOnExtendedTime">
+                            <span class="addon-icon">🕐</span>
+                            <div>
+                                <strong>Extended Time</strong>
+                                <div style="font-size: 0.75rem; color: #6b7280;">Add an extra hour to your celebration</div>
+                            </div>
+                        </div>
+                        <span class="addon-price">+$100</span>
+                    </div>
+                    
+                    <div class="alert alert-info" style="margin-top: 1.5rem;">
+                        <strong>Investment Level:</strong> What's your celebration budget?
+                        <div class="radio-group" style="margin-top: 0.75rem;">
+                            <div class="radio-label">
+                                <input type="radio" name="investmentLevel" value="standard" id="investStandard" checked>
+                                <label for="investStandard">Standard experience (Under $300)</label>
+                            </div>
+                            <div class="radio-label">
+                                <input type="radio" name="investmentLevel" value="premium" id="investPremium">
+                                <label for="investPremium">Premium upgrades welcome ($300-600)</label>
+                            </div>
+                            <div class="radio-label">
+                                <input type="radio" name="investmentLevel" value="luxury" id="investLuxury">
+                                <label for="investLuxury">Special occasion splurge ($600-1000)</label>
+                            </div>
+                            <div class="radio-label">
+                                <input type="radio" name="investmentLevel" value="vip" id="investVIP">
+                                <label for="investVIP">Budget is flexible for perfection ($1000+)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Contact Information -->
+                <div class="form-section" data-step="6">
+                    <h2>Contact Information</h2>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="(555) 123-4567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="your.email@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Best Way to Reach You</label>
+                        <div class="radio-group">
+                            <div class="radio-label">
+                                <input type="radio" name="contactMethod" value="text" id="contactText" checked>
+                                <label for="contactText">📱 Text message (fastest response)</label>
+                            </div>
+                            <div class="radio-label">
+                                <input type="radio" name="contactMethod" value="call" id="contactCall">
+                                <label for="contactCall">☎️ Phone call</label>
+                            </div>
+                            <div class="radio-label">
+                                <input type="radio" name="contactMethod" value="email" id="contactEmail">
+                                <label for="contactEmail">✉️ Email</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7: Review -->
+                <div class="form-section" data-step="7">
+                    <h2>Review Your Booking</h2>
+                    <div class="alert alert-info" id="bookingSummary">
+                        <!-- Summary will be populated by JavaScript -->
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <h3 style="font-size: 1.125rem; margin-bottom: 1rem;">Booking Agreement</h3>
+                        <div class="checkbox-group">
+                            <div class="checkbox-label">
+                                <input type="checkbox" id="agreeDeposit" name="agreeDeposit">
+                                <label for="agreeDeposit">I understand a 50% deposit is required to secure my reservation</label>
+                            </div>
+                            
+                            <div class="checkbox-label">
+                                <input type="checkbox" id="agreeCancellation" name="agreeCancellation">
+                                <label for="agreeCancellation">I agree to the 24-hour cancellation policy</label>
+                            </div>
+                            
+                            <div class="checkbox-label">
+                                <input type="checkbox" id="readyToBook" name="readyToBook">
+                                <label for="readyToBook">I'm ready to secure this reservation with my deposit today</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 8: Confirmation -->
+                <div class="form-section" data-step="8">
+                    <h2>Almost Done!</h2>
+                    
+                    <div class="alert alert-warning">
+                        <strong>Next Steps:</strong> Once you submit, we'll send you a secure payment link for your deposit within 2 hours. Your reservation is confirmed once the deposit is received.
+                    </div>
+                    
+                    <div style="padding: 1rem; background-color: #f3f4f6; border-radius: 0.5rem; margin: 1.5rem 0;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">What happens next?</h3>
+                        <ol style="margin: 0; padding-left: 1.5rem; font-size: 0.875rem; color: #4b5563;">
+                            <li>You'll receive an immediate confirmation email</li>
+                            <li>We'll send a secure Square payment link for your deposit</li>
+                            <li>Once paid, you'll get a full confirmation with all details</li>
+                            <li>We'll follow up 1 week before your event</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Questions?</h3>
+                        <p style="font-size: 0.875rem; margin: 0;">
+                            Call us at <strong>(972) 274-1261</strong> or email <strong>info@edylicious.com</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 9: Success -->
+                <div class="form-section" data-step="9">
+                    <div style="text-align: center;">
+                        <div class="success-icon">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        
+                        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Booking Request Received!</h2>
+                        
+                        <div class="alert alert-success" style="max-width: 500px; margin: 0 auto; text-align: left;">
+                            <h3 style="font-size: 1.125rem; margin-bottom: 0.5rem;">What's Next?</h3>
+                            <p id="successMessage"></p>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <p style="color: #4b5563;">Need to make changes? Call us at <strong>(972) 274-1261</strong></p>
+                            <button type="button" class="btn btn-secondary" onclick="resetForm()">Make Another Booking</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons" id="navButtons">
+                <button type="button" class="btn btn-secondary" id="backBtn" onclick="previousStep()" style="display: none;">Back</button>
+                <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextStep()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; padding: 2rem 0; color: #6b7280; font-size: 0.875rem;">
+        <p>Questions? Call us at (972) 274-1261</p>
+        <p>621 N Hampton Rd, Suite 110A, DeSoto, TX 75115</p>
+    </div>
+
+    <!-- Square Payment Form Container (add to Step 8) -->
+    <div id="card-container" style="display: none;"></div>
+    
+    <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+    <script src="booking-enhanced.js"></script>
+</body>
+</html>
