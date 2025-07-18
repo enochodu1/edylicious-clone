@@ -1,0 +1,13 @@
+{
+  "name": "edylicious-clone",
+  "version": "1.0.0",
+  "description": "Static clone of Edylicious tea room website",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'No build required for static site'"
+  },
+  "keywords": ["tea-room", "catering", "static-site"],
+  "author": "Edylicious Clone",
+  "license": "MIT",
+  "homepage": "https://edylicious.com"
+}
