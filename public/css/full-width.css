@@ -1,0 +1,183 @@
+/* Full Width Layout Overrides for Edylicious */
+
+/* Remove all max-width constraints */
+* {
+    max-width: none !important;
+}
+
+/* Main containers */
+#siteWrapper,
+.site-wrapper,
+.site-container,
+.content-container,
+.content-wrapper {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Header */
+#header,
+.header,
+.header-inner,
+.Header-inner {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Main content areas */
+.Main,
+.Main-content,
+main,
+#content,
+#page {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Page sections */
+.page-section,
+.content-section,
+.Index-page {
+    max-width: none !important;
+    width: 100% !important;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/* Squarespace layout system */
+.sqs-layout,
+.sqs-layout > .sqs-row {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Content blocks */
+.sqs-block,
+.content-block {
+    max-width: none !important;
+}
+
+/* Footer */
+#footer,
+#footer-sections,
+.footer,
+.Footer {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Navigation */
+.header-nav,
+.Header-nav {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Remove centering margins */
+.centered-content,
+.content-centered {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Gallery and image blocks */
+.sqs-gallery-container,
+.image-block-wrapper {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Text blocks - optional: limit text width for readability */
+.sqs-block-content p,
+.sqs-block-content h1,
+.sqs-block-content h2,
+.sqs-block-content h3 {
+    max-width: 1200px; /* Optional: limit text width for readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .page-section,
+    .content-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .page-section,
+    .content-section {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+/* Wide screen adjustments */
+@media (min-width: 1920px) {
+    .page-section,
+    .content-section {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    
+    /* Optional: Add max-width to content for ultra-wide screens */
+    .sqs-block-content {
+        max-width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Specific Squarespace overrides */
+.Index-page--has-image {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+.Index-page-content {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+/* Remove any container restrictions */
+.container,
+.container-fluid {
+    max-width: none !important;
+    width: 100% !important;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/* Ensure images can be full width */
+.sqs-block-image .sqs-block-content {
+    max-width: none !important;
+}
+
+/* Full width for summary blocks */
+.sqs-block-summary-v2 .summary-item {
+    max-width: none !important;
+}
+
+/* Newsletter blocks */
+.newsletter-block .newsletter-form-wrapper {
+    max-width: none !important;
+}
+
+/* Form blocks */
+.sqs-block-form {
+    max-width: none !important;
+}
+
+/* Video blocks */
+.sqs-block-video {
+    max-width: none !important;
+}
+
+/* Spacer blocks should be full width */
+.sqs-block-spacer {
+    max-width: none !important;
+    width: 100% !important;
+}

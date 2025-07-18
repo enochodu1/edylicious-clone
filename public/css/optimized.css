@@ -199,12 +199,13 @@ button, .sqs-block-button-element {
     }
 }
 
-/* Desktop styles */
+/* Desktop styles - Full Width */
 @media (min-width: 1024px) {
     .page-section {
         padding: 60px 40px;
-        max-width: 1200px;
-        margin: 0 auto;
+        width: 100%;
+        max-width: none !important;
+        margin: 0;
     }
     
     .sqs-col-4 {
@@ -215,6 +216,13 @@ button, .sqs-block-button-element {
     .sqs-col-3 {
         width: 25% !important;
         float: left !important;
+    }
+    
+    /* Full width containers */
+    .content-wrapper,
+    .sqs-layout > .sqs-row {
+        max-width: none !important;
+        width: 100%;
     }
 }
 
