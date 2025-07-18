@@ -55,7 +55,6 @@ img {
 }
 
 /* Critical performance styles */
-.header-announcement-bar-wrapper { display: none !important; }
 .sqs-block { opacity: 1 !important; transform: none !important; }
 .sqs-block-image { opacity: 1 !important; }
 [data-animation-role] { opacity: 1 !important; transform: none !important; }

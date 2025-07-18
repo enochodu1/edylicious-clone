@@ -1,0 +1,118 @@
+/* Restore Header Display */
+
+/* Show header elements */
+#header,
+header,
+.header,
+.Header {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Show announcement bar */
+.header-announcement-bar-wrapper,
+.Header-announcement-bar-wrapper {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Ensure header inner elements are visible */
+.header-inner,
+.Header-inner {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Show navigation */
+.header-nav,
+.Header-nav,
+.header-nav-wrapper,
+.Header-nav-wrapper {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Show header title/logo */
+.header-title,
+.Header-title,
+.header-title-logo,
+.Header-title-logo {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Show header actions */
+.header-actions,
+.Header-actions {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Ensure proper header structure */
+#header {
+    position: relative;
+    width: 100%;
+    z-index: 999;
+}
+
+/* Mobile header visibility */
+@media (max-width: 768px) {
+    .header-burger,
+    .Header-burger,
+    .mobile-nav-toggle {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Show mobile menu when needed */
+    .header-menu,
+    .Header-menu {
+        display: block !important;
+    }
+}
+
+/* Remove any transforms that might hide elements */
+#header,
+.header-inner,
+.header-nav {
+    transform: none !important;
+}
+
+/* Ensure header background is visible */
+.header-background {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* Fix any height issues */
+#header:not(.shrink) {
+    min-height: auto;
+}
+
+/* Announcement bar specific styles */
+.sqs-announcement-bar,
+.announcement-bar {
+    display: block !important;
+}
+
+/* Override the optimized.css hiding */
+.header-announcement-bar-wrapper { 
+    display: block !important; 
+}
+
+/* Ensure secondary navigation is visible if exists */
+.Header-nav--secondary {
+    display: block !important;
+}
+
+/* Social icons in header */
+.Header-social {
+    display: block !important;
+}
