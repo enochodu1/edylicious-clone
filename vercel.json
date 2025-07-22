@@ -1,18 +1,15 @@
 {
   "version": 2,
-  "public": true,
-  "builds": [
+  "public": false,
+  "headers": [
     {
-      "src": "**/*",
-      "use": "@vercel/static"
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-  "cleanUrls": true,
-  "trailingSlash": false
+  ]
 }
