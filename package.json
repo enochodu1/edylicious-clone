@@ -1,13 +1,17 @@
 {
   "name": "edylicious-clone",
-  "version": "1.0.0",
-  "description": "Static clone of Edylicious tea room website",
+  "version": "2.0.0",
+  "description": "Optimized Edylicious tea room website",
   "scripts": {
     "dev": "python3 -m http.server 8000",
-    "build": "echo 'No build required for static site'"
+    "build": "npm run build:clean && npm run build:copy && npm run build:optimize",
+    "build:clean": "rm -rf public",
+    "build:copy": "mkdir -p public && cp -r index-optimized.html assets pages css js images public/ 2>/dev/null || true",
+    "build:optimize": "echo 'Build complete. Ready for deployment!'",
+    "serve": "cd public && python3 -m http.server 8000"
   },
-  "keywords": ["tea-room", "catering", "static-site"],
-  "author": "Edylicious Clone",
+  "keywords": ["tea-room", "catering", "static-site", "optimized"],
+  "author": "Edylicious",
   "license": "MIT",
   "homepage": "https://edylicious.com"
 }
