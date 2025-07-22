@@ -36,32 +36,36 @@
       font-family: Arial, sans-serif;
       background: #FFFFFF;
       overflow-x: hidden;
+      width: 1920px;
+      margin: 0 auto;
     }
     
     /* Header Styles */
     .header {
-      position: relative;
-      width: 100%;
+      position: absolute;
+      width: 1920px;
       height: 299.23px;
+      left: 0px;
+      top: 0px;
       background: #762946;
-      display: flex;
-      align-items: center;
       z-index: 2;
     }
     
     .header-container {
-      width: 100%;
-      max-width: 1843.2px;
-      margin: 0 auto;
-      padding: 0 38.4px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: absolute;
+      width: 1843.2px;
+      height: 228.83px;
+      left: 38.4px;
+      top: 19.2px;
     }
     
     .social-links {
+      position: absolute;
+      width: 134.47px;
+      height: 25px;
+      left: 0px;
+      top: 101.91px;
       display: flex;
-      gap: 20px;
     }
     
     .social-link {
@@ -78,31 +82,33 @@
       fill: #FFFFFF;
     }
     
+    .social-link:first-child {
+      margin-right: 57.63px;
+    }
+    
     .logo-container {
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       width: 306px;
+      max-width: 921.61px;
       height: 176px;
+      max-height: 176px;
+      left: 768.6px;
+      top: 0px;
     }
     
     .logo {
-      width: 100%;
-      height: 100%;
+      width: 306px;
+      height: 176px;
       object-fit: contain;
-    }
-    
-    .nav-menu {
-      display: none;
     }
     
     .nav-desktop {
       position: absolute;
-      bottom: 52px;
-      left: 50%;
-      transform: translateX(-50%);
+      width: 576.84px;
+      height: 1px;
+      left: 632.58px;
+      top: 228.83px;
       display: flex;
-      gap: 32px;
     }
     
     .nav-desktop a {
@@ -110,7 +116,9 @@
       text-decoration: none;
       font-size: 17.6px;
       line-height: 32px;
+      text-align: center;
       padding: 0 16.32px;
+      white-space: nowrap;
     }
     
     .nav-desktop a:hover {
@@ -120,21 +128,21 @@
     /* Hero Section */
     .hero-section {
       position: relative;
-      width: 100%;
+      width: 1920px;
       height: 1130px;
+      padding: 301.359px 0px 0px;
+      isolation: isolate;
       background: #FFFFFF;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 301.359px 0 0;
     }
     
     .hero-background {
       position: absolute;
-      width: 100%;
+      height: 880.44px;
+      left: 0px;
+      right: 0px;
+      top: calc(50% - 880.44px/2 + 160.22px);
+      width: 1920px;
       height: 1074px;
-      top: 50%;
-      transform: translateY(-50%);
       background-image: url('assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/35458fb5-669b-4069-bf98-47ccbd01e36e/IMG_1367.jpg');
       background-size: cover;
       background-position: center;
@@ -144,30 +152,43 @@
     /* Gallery Section */
     .gallery-section {
       position: relative;
-      width: 100%;
+      width: 1920px;
       height: 759px;
+      min-height: 396px;
       background: #FFFFFF;
-      padding: 38.4px 0 126.72px;
+    }
+    
+    .gallery-wrapper {
+      position: relative;
+      width: 1920px;
+      max-width: 1920px;
+      height: 834.98px;
+      padding: 38.4px 0px 126.72px;
     }
     
     .gallery-container {
-      width: 100%;
-      max-width: 1920px;
+      width: 1920px;
       height: 669.86px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 160px;
+      position: relative;
     }
     
     .gallery-item {
+      position: absolute;
       width: 526px;
       height: 669.86px;
-      position: relative;
       overflow: hidden;
     }
     
-    .gallery-item:last-child {
+    .gallery-item:nth-child(1) {
+      left: 160px;
+    }
+    
+    .gallery-item:nth-child(2) {
+      left: 697px;
+    }
+    
+    .gallery-item:nth-child(3) {
+      left: 1234px;
       width: 502.5px;
     }
     
@@ -179,26 +200,31 @@
     
     .gallery-mask {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(70.71% 70.71% at 50% 50%, transparent 0%, rgba(0,0,0,0.3) 100%);
+      inset: 0;
+      background: radial-gradient(70.71% 70.71% at 50% 50%, #FFFFFF 0%, #000000 100%);
+      mix-blend-mode: normal;
+      opacity: 0.1;
       pointer-events: none;
     }
     
     /* Content Section */
     .content-section {
       position: relative;
-      width: 100%;
+      width: 1920px;
+      height: 792px;
+      min-height: 792px;
       padding: 252.08px 38.4px 252.09px;
       background: #FFFFFF;
-      text-align: center;
     }
     
     .content-background {
       position: absolute;
-      inset: 38.39px;
+      left: 38.39px;
+      right: 38.39px;
+      top: 38.39px;
+      bottom: 38.39px;
+      width: 1843.22px;
+      height: 715.22px;
       background-image: url('assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/c01611a5-1388-4d61-bb8f-8ebd55fa4b29/3R9A4340.jpg');
       background-size: cover;
       background-position: center;
@@ -208,27 +234,58 @@
     
     .content-wrapper {
       position: relative;
+      width: 1843.2px;
+      max-width: 1920px;
+      height: 287.83px;
+      padding: 126.72px 0px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       z-index: 1;
     }
     
     .main-heading {
+      position: absolute;
+      width: 714px;
+      height: 79px;
+      left: calc(50% - 714px/2);
+      top: 126.72px;
+      font-family: 'Arial';
+      font-style: normal;
+      font-weight: 400;
       font-size: 63.875px;
       line-height: 79px;
+      text-align: center;
       color: #000000;
-      margin-bottom: 50px;
-      font-weight: 400;
     }
     
     .gallery-button {
-      display: inline-block;
+      position: absolute;
+      width: 450px;
+      height: 77px;
+      left: calc(50% - 450px/2);
+      top: 305px;
       background: #762946;
-      color: #FFFFFF;
-      padding: 18px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-decoration: none;
+      padding: 71px 0px 79px;
+    }
+    
+    .gallery-button span {
+      width: 616.8px;
+      height: 41px;
+      font-family: 'Arial';
+      font-style: normal;
+      font-weight: 400;
       font-size: 36px;
       line-height: 41px;
+      text-align: center;
       letter-spacing: 0.8px;
-      transition: opacity 0.3s;
+      color: #FFFFFF;
     }
     
     .gallery-button:hover {
@@ -238,12 +295,17 @@
     /* CTA Buttons Section */
     .cta-section {
       position: absolute;
-      bottom: 126px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 31px;
+      right: -31px;
+      top: 1888px;
+      bottom: 1489.13px;
       display: flex;
+      justify-content: center;
+      padding: 0px 562.75px 45.39px 495.63px;
       gap: 78.12px;
-      z-index: 1;
+      width: 1920px;
+      height: 125.17px;
+      margin: 0 auto;
     }
     
     .cta-button {
@@ -255,10 +317,13 @@
       background: #762946;
       color: #FFFFFF;
       text-decoration: none;
+      font-family: 'Arial';
+      font-style: normal;
+      font-weight: 400;
       font-size: 17.6px;
       line-height: 20px;
       letter-spacing: 0.88px;
-      transition: opacity 0.3s;
+      padding: 29.39px 19.2px 30.39px;
     }
     
     .cta-button:hover {
@@ -268,67 +333,123 @@
     /* Footer */
     .footer {
       position: relative;
-      width: 100%;
+      width: 1920px;
       height: 345.13px;
       background: #762946;
     }
     
     .footer-background {
       position: absolute;
-      inset: 0;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      width: 1920px;
+      height: 345.13px;
       background-image: url('assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/0fdc3db9-a906-4363-aaf4-ec779fac2f74/Edylicious+Brand+Guide+2023xxxxx.png');
       background-size: cover;
       background-position: center;
       opacity: 0.15;
+      z-index: 0;
+    }
+    
+    .footer-overlay {
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      background: #762946;
+      opacity: 0.15;
+      z-index: 1;
     }
     
     .footer-content {
       position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 0 38.4px;
-      z-index: 1;
+      width: 1920px;
+      max-width: 1920px;
+      height: 345.13px;
+      padding: 0px 0px 38.4px;
+      z-index: 2;
     }
     
     .footer-inner {
-      text-align: center;
+      width: 1920px;
+      height: 306.73px;
+      position: relative;
+    }
+    
+    .footer-logo-container {
+      position: absolute;
+      height: 306.73px;
+      left: 764.13px;
+      right: 764.12px;
+      top: 0px;
+      width: 391.75px;
     }
     
     .footer-logo {
       width: 391.75px;
       height: 306.73px;
-      margin: 0 auto 20px;
       object-fit: contain;
     }
     
     .footer-info {
+      position: absolute;
+      height: 142.49px;
+      left: 1281px;
+      right: 247.25px;
+      bottom: 77.24px;
+      width: 391.75px;
       color: #FFFFFF;
-      margin-top: -100px;
-    }
-    
-    .footer-info p {
-      margin: 15px 0;
     }
     
     .footer-address {
+      width: 391.75px;
+      height: 26px;
+      font-family: 'Arial';
+      font-style: normal;
+      font-weight: 400;
       font-size: 14.4px;
       line-height: 26px;
+      text-align: center;
+      color: #FFFFFF;
+      margin: 0 0 15px 0;
     }
     
     .footer-phone {
+      width: 391.75px;
+      height: 32px;
+      font-family: 'Arial';
+      font-style: normal;
+      font-weight: 400;
       font-size: 17.6px;
       line-height: 32px;
+      text-align: center;
+      color: #FFFFFF;
+      margin: 0;
     }
     
     .footer-social {
       position: absolute;
+      width: 278px;
+      height: 20px;
       left: 294px;
       top: 120.89px;
       display: flex;
-      gap: 20px;
+      justify-content: center;
+      gap: 0;
+    }
+    
+    .footer-social .social-link {
+      padding: 0px 6px;
+      width: 32px;
+      height: 20px;
+    }
+    
+    .footer-social svg {
+      width: 20px;
+      height: 20px;
     }
     
     /* Responsive */
@@ -435,18 +556,20 @@
 
     <!-- Gallery Section -->
     <section class="gallery-section">
-      <div class="gallery-container">
-        <div class="gallery-item">
-          <img src="assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/a2fcdbe1-5228-4c43-abe7-108cdff83c54/Screenshot+2023-02-25+at+2.47.05+PM.png" alt="Gallery Image 1">
-          <div class="gallery-mask"></div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/1c2ef99d-181c-4a7d-ad79-055c874ebeb7/image-asset.jpeg" alt="Gallery Image 2">
-          <div class="gallery-mask"></div>
-        </div>
-        <div class="gallery-item">
-          <img src="assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/6069210e-cc86-410a-a483-cd1afe5b6cb3/image-asset.jpeg" alt="Gallery Image 3">
-          <div class="gallery-mask"></div>
+      <div class="gallery-wrapper">
+        <div class="gallery-container">
+          <div class="gallery-item">
+            <img src="assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/a2fcdbe1-5228-4c43-abe7-108cdff83c54/Screenshot+2023-02-25+at+2.47.05+PM.png" alt="Gallery Image 1">
+            <div class="gallery-mask"></div>
+          </div>
+          <div class="gallery-item">
+            <img src="assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/1c2ef99d-181c-4a7d-ad79-055c874ebeb7/image-asset.jpeg" alt="Gallery Image 2">
+            <div class="gallery-mask"></div>
+          </div>
+          <div class="gallery-item">
+            <img src="assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/6069210e-cc86-410a-a483-cd1afe5b6cb3/image-asset.jpeg" alt="Gallery Image 3">
+            <div class="gallery-mask"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -456,7 +579,7 @@
       <div class="content-background"></div>
       <div class="content-wrapper">
         <h1 class="main-heading">Food, Friends, Tea & Life</h1>
-        <a href="pages/gallery.html" class="gallery-button">See Gallery</a>
+        <a href="pages/gallery.html" class="gallery-button"><span>See Gallery</span></a>
       </div>
     </section>
 
@@ -470,9 +593,12 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-background"></div>
+    <div class="footer-overlay"></div>
     <div class="footer-content">
       <div class="footer-inner">
-        <img src="assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/1677361146437-U8JITX4YDYN8C3FJUJEL/Edylicious-logo.png" alt="Edylicious" class="footer-logo">
+        <div class="footer-logo-container">
+          <img src="assets/images.squarespace-cdn.com/content/v1/60a37187129c50558fc179b2/1677361146437-U8JITX4YDYN8C3FJUJEL/Edylicious-logo.png" alt="Edylicious" class="footer-logo">
+        </div>
         <div class="footer-info">
           <p class="footer-address">621 N. Hampton Road, Suite 110A</p>
           <p class="footer-address">DeSoto, Texas 75115</p>
