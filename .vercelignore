@@ -1,0 +1,13 @@
+# Ignore backup files
+index-backup.html
+index-new.html
+index-backup-original.html
+preview.html
+
+# Ignore git files
+.git
+.gitignore
+
+# Ignore local files
+.DS_Store
+node_modules
